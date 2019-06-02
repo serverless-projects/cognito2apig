@@ -1,4 +1,8 @@
-# AWS API Gateway Test CLI <a href="https://www.npmjs.com/package/aws-api-gateway-cli-test"><img alt="NPM Version" src="https://img.shields.io/npm/v/aws-api-gateway-cli-test.svg?style=flat-square" /></a>
+# AWS API Gateway Test with cognito <a href="https://www.npmjs.com/package/cognito2apig"><img alt="NPM Version" src="https://img.shields.io/npm/v/cognito2apig.svg?style=flat-square" /></a>
+
+### Notes
+
+The original owner holds several PRs for a while. So I have to manage the change with new npm packages. 
 
 A simple CLI to test API Gateway endpoints with IAM authorization. Uses the AWS SDK, AWS Cognito JS SDK, and the generic [API Gateway Client][apiGClient]. Using the login information given, this tool logs a user into the Cognito User Pool, gets the temporary IAM credentials, and makes the API request. It can be difficult to do these steps by hand without scripting them.
 
@@ -7,13 +11,13 @@ A simple CLI to test API Gateway endpoints with IAM authorization. Uses the AWS 
 To install globally run the following:
 
 ```
-$ npm install -g aws-api-gateway-cli-test
+$ npm install -g cognito2apig
 ```
 
 You can also use it locally using:
 
 ```
-$ npx aws-api-gateway-cli-test
+$ npx cognito2apig
 ```
 
 ### Usage
@@ -21,7 +25,7 @@ $ npx aws-api-gateway-cli-test
 If you have it globally installed:
 
 ``` bash
-$ apig-test \
+$ coginto2apig \
   --username='johndoe' \
   --password='password' \
   --user-pool-id='us-east-1_Xxxxxxxx' \
@@ -42,7 +46,13 @@ $ apig-test \
 If you have it locally installed:
 
 ``` bash
-$ npx aws-api-gateway-cli-test --options
+$ coginto2apig --options
+```
+
+If you have body from file:
+
+``` bash
+$ cognito2apig --body='@mocks/create.json' --options
 ```
 
 This command takes the following options:
@@ -90,7 +100,7 @@ This command takes the following options:
   Header field on which to pass the access token.
 
 - `body`
-  The request body as a JSON string. Defaults to `'{}'`.
+  The request body as a JSON string or file (start with @). Defaults to `'{}'`.
 
 For additional documentation on the format for `params` and `additional-params`; refer to the generic [API Gateway Client][apiGClient] docs.
 
@@ -99,25 +109,11 @@ For additional documentation on the format for `params` and `additional-params`;
 Clone the repo and initialize the project.
 
 ```
-$ git clone https://github.com/AnomalyInnovations/aws-api-gateway-cli-test
-$ cd aws-api-gateway-cli-test
-$ npm install
+$ node index.js --options
 ```
 
-Test the command using `node index.js`.
-
-To install the `apig-test` command, run the following:
+To install the `cognito2apig` command, run the following:
 
 ```
 $ npm link
 ```
-
-### Feedback
-
-Send us your feedback via Twitter to Frank Wang ([@fanjiewang][fTwitter]) or Jay V ([@jayair][jTwitter]). Or send us an [email][email].
-
-
-[apiGClient]: https://github.com/kndt84/aws-api-gateway-client
-[fTwitter]: https://twitter.com/fanjiewang
-[jTwitter]: https://twitter.com/jayair
-[email]: mailto:contact@anoma.ly
