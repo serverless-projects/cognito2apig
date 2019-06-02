@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const packageJson = require('./package.json');
 const fs = require('fs');
 
 global.fetch = require('node-fetch');
@@ -79,7 +80,6 @@ const { argv } = require('yargs')
   .alias('v', 'version')
   .version(packageJson.version)
   .wrap(null);
-const packageJson = require('./package.json');
 
 function authenticate(callback) {
   const poolData = {
